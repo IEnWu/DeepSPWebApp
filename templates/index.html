@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAI'S LAB</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+    <header>
+        <a href="https://sites.google.com/stevens.edu/pklab/home?authuser=0" target="_blank">
+            <img src="{{ url_for('static', filename='imgs/logo.png') }}" alt="LAI'S LAB" id="logo">
+        </a>
+    </header>
+
+    <main>
+        <section id="deepSP">
+            <div class = "text-container">DeepSP </div>
+        </section>
+            <div id="about">
+                <h2>> About DeepSP</h2>
+            </div> 
+                        
+            <div id="sequence-submission">
+                <h2>> Sequence Submission</h2>
+                    <form method="post" action='/upload' enctype="multipart/form-data">
+                    
+                    <label for="Name">Name your mAb name</label><br>
+                    <textarea id="Name" name="mab_name"></textarea><br>
+
+                    <label for="heavy-chain">Heavy chain's variable region sequence</label><br>
+                    <textarea id="heavy-chain" name="heavy_chain"></textarea><br>
+
+                    <label for="light-chain">Light chain's variable region sequence</label><br>
+                    <textarea id="light-chain" name="light_chain"></textarea><br>
+
+                    <button type="submit" class="submit-button">Submit</button>
+                    
+                    </form>
+                    
+            </div>
+            <div id="result">
+                <h2>> Result</h2>
+                
+                {% if csv_path %}
+                    <p>Download the result file here: <a href="{{ url_for('download_file', filename='DeepSP_descriptors.csv')}}">{{ csv_path }}</a></p>
+                {% else %}
+                    <p>No results available.</p>
+                {% endif %}
+            </div> 
+        </section>
+    </main>
+    <footer>
+        <p> &copy; 2024 Pin-Kuang Lai's Group </p>
+        <p> plai3@stevens.edu </p>
+    </footer>
+</body>
+</html>
+
+
