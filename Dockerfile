@@ -6,7 +6,6 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-RUN conda install -c conda-forge tensorflow -y
 RUN conda install -c conda-forge biopython -y
 RUN conda install -c bioconda hmmer -y 
 RUN conda install bioconda::anarci 
