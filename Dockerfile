@@ -15,9 +15,9 @@ ENV PATH /opt/conda/envs/myenv/bin:$PATH
 
 RUN conda run -n myenv conda install -c conda-forge keras==2.12.0
 RUN conda run -n myenv conda install -c conda-forge tensorflow==2.12.0
-RUN conda install -c conda-forge biopython -y
-RUN conda install -c bioconda hmmer -y 
-RUN conda install bioconda::anarci 
+RUN conda run -n myenv conda install -c conda-forge biopython -y
+RUN conda run -n myenv conda install -c bioconda hmmer -y 
+RUN conda run -n myenv conda install bioconda::anarci 
 
 COPY . /app
 
