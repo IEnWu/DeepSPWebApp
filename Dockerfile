@@ -17,8 +17,7 @@ RUN conda install bioconda::anarci
 
 COPY . /app
 
-#COPY requirements.txt /app/requirements.txt
-RUN conda activate myenv
+COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 
 
