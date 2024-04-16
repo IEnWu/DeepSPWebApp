@@ -6,15 +6,17 @@ RUN apt-get update && \
 
 WORKDIR /app
 
+# Install Python packages using pip first
+COPY requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt
+
 RUN conda install -c conda-forge biopython -y
 RUN conda install -c bioconda hmmer -y 
 RUN conda install bioconda::anarci 
 
 
-
 COPY . /app
 
-RUN pip install -r requirements.txt 
 
 
 
