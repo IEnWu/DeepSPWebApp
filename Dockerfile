@@ -7,10 +7,11 @@ WORKDIR /app
 RUN conda install -c conda-forge biopython -y
 RUN conda install -c bioconda hmmer -y 
 RUN conda install bioconda::anarci 
+RUN conda install --file requirements.txt -y
 
 COPY . /app
 
-RUN conda install --file requirements.txt -y
+
 
 EXPOSE 80
 
