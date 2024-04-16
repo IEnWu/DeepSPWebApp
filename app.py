@@ -40,7 +40,7 @@ def home():
 
 def write_to_csv(data, filename):
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-    with open(filepath, 'a', newline='') as csvfile:
+    with open(filepath, 'w', newline='') as csvfile:
         fieldnames = ['Name', 'Heavy_Chain', 'Light_Chain']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
