@@ -23,4 +23,4 @@ RUN pip install -r requirements.txt
 
 
 # Run app.py when the container launches
-CMD ["gunicorn", "app:app"]
+CMD ["conda", "run", "-n", "myenv", "gunicorn", "app:app"]
