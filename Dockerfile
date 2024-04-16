@@ -5,7 +5,9 @@ RUN apt-get update && \
     apt-get install -y gcc build-essential
 
 WORKDIR /app
-
+RUN conda install -c conda-forge keras==2.12.0
+RUN conda install -c conda-forge tensorflow==2.12.0
+RUN conda install scikit-learn == 1.3.0
 RUN conda install -c conda-forge biopython -y
 RUN conda install -c bioconda hmmer -y 
 RUN conda install bioconda::anarci 
