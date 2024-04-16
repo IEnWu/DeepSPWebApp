@@ -25,14 +25,17 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'txt','csv'}
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-def home():
-    csv_path = request.args.get('csv_path', None)
-    #print("csv_path:", csv_path)  # This will print the value of csv_path to your console
-    return render_template('index.html', csv_path=csv_path)
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/', methods=['GET','POST'])
+
+def home():
+    csv_path = request.args.get('csv_path', None)
+    #print("csv_path:", csv_path)  # This will print the value of csv_path to your console
+    return render_template('index.html', csv_path=csv_path)
 
 def write_to_csv(data):
     with open('output.csv', 'w', newline='') as csvfile:
