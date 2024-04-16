@@ -10,6 +10,8 @@ RUN conda install bioconda::anarci
 
 COPY . /app
 
-RUN pip install -r requirements.txt
+RUN conda install --file requirements.txt -y
 
-CMD ["gunicorn", "app:app"]
+EXPOSE 80
+
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:80"]
