@@ -1,13 +1,13 @@
 FROM continuumio/miniconda3
 
 # Install gcc and other build tools
-RUN apt-get update && \
-    apt-get install -y gcc build-essential
+#RUN apt-get update && \
+#    apt-get install -y gcc build-essential
 
 WORKDIR /app
 
-RUN conda create -n myenv python=3.11.5
-SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
+#RUN conda create -n myenv python=3.11.5
+#SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
 
 RUN conda install -c conda-forge keras==2.12.0
 RUN conda install -c conda-forge tensorflow==2.12.0
