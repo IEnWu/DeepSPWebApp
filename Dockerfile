@@ -21,6 +21,8 @@ COPY . /app
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 
+RUN conda activate myenv
+RUN conda run -n myenv python -c "import tensorflow as tf; print(tf.__version__)"
 
 # Run app.py when the container launches
-CMD ["conda", "run", "-n", "myenv", "gunicorn", "app:app"]
+CMD ["gunicorn", "app:app"]
