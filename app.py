@@ -20,6 +20,7 @@ from main import process_file
 
 app = Flask(__name__)
 
+app.secret_key = 'pkl'
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'txt','csv'}
@@ -51,11 +52,11 @@ def upload_file():
     
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('No file part')
+            #flash('No file part')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('No selected file')
+            #flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = url_quote(file.filename)
@@ -78,7 +79,7 @@ def upload_file():
                 csv_filename = os.path.basename(full_csv_path)
                 return redirect(url_for('home', csv_path=csv_filename))
             except Exception as e:
-                flash(f'Error processing file: {e}')
+                #flash(f'Error processing file: {e}')
                 return redirect(request.url)
                    
     return render_template('index.html')
