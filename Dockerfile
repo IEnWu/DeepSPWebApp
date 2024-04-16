@@ -9,9 +9,12 @@ WORKDIR /app
 RUN conda create -n myenv python=3.11.5
 #SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
 
+SHELL ["/bin/bash", "-c"]
+RUN echo "source activate myenv" > ~/.bashrc
+ENV PATH /opt/conda/envs/myenv/bin:$PATH
+
 RUN conda run -n myenv conda install -c conda-forge keras==2.12.0
 RUN conda run -n myenv conda install -c conda-forge tensorflow==2.12.0
-
 RUN conda install -c conda-forge biopython -y
 RUN conda install -c bioconda hmmer -y 
 RUN conda install bioconda::anarci 
@@ -20,9 +23,6 @@ COPY . /app
 
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
-
-RUN conda activate myenv
-RUN conda run -n myenv python -c "import tensorflow as tf; print(tf.__version__)"
 
 # Run app.py when the container launches
 CMD ["gunicorn", "app:app"]
