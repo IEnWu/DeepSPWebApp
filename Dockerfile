@@ -11,7 +11,6 @@ SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
 
 RUN conda install -c conda-forge keras==2.12.0
 RUN conda install -c conda-forge tensorflow==2.12.0
-RUN conda install scikit-learn == 1.3.0
 RUN conda install -c conda-forge biopython -y
 RUN conda install -c bioconda hmmer -y 
 RUN conda install bioconda::anarci 
