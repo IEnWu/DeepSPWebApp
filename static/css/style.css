@@ -66,6 +66,15 @@ header {
     margin: 10px 0;
 }
 
+#sequence-submission textarea {
+    margin: 10px 0;
+    padding: 10px;
+    width: 450px;
+    height: 50px;
+    margin-top: -10px; 
+    margin-bottom: 2px; /* Space below textareas */
+}
+
 #sequence-submission button[type="submit"] {
     margin: 10px 0; /* Existing margin */
     padding: 12px 24px; /* Increases padding to make the button larger */
