@@ -50,33 +50,32 @@ def write_to_csv(data, filename):
 
 @app.route('/upload', methods=['GET','POST'])
 
+@app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
-    if 'file' not in request.files:
-        flash('No file part')
-        return redirect(request.url)
-    file = request.files['file']
-    if file.filename == '':
-        flash('No selected file')
-        return redirect(request.url)
-    if file and allowed_file(file.filename):
-        filename = url_quote(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    if request.method == 'POST':
+        file = request.files.get('file')  # Using .get is safer for dict access
+        if file and file.filename:
+            if allowed_file(file.filename):
+                filename = url_quote(file.filename)  # Use secure_filename to avoid security issues
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                # If you need to do something with the file, add that logic here
 
-    mab_data = {
-        'Name': request.form['mab_name'],
-        'Heavy_Chain': request.form['heavy_chain'],
-        'Light_Chain': request.form['light_chain']
-    }
-    filepath = write_to_csv(mab_data, 'input_data.csv')
+        # Handle form data and write to CSV
+        mab_data = {
+            'Name': request.form.get('mab_name', ''),
+            'Heavy_Chain': request.form.get('heavy_chain', ''),
+            'Light_Chain': request.form.get('light_chain', '')
+        }
+        filepath = write_to_csv(mab_data, 'input_data.csv')
+        try:
+            processed_csv_path = process_file(filepath)  # This function should handle file processing
+            csv_filename = os.path.basename(processed_csv_path)
+            return redirect(url_for('home', csv_path=csv_filename))
+        except Exception as e:
+            flash(f'Error processing file: {e}')
+            return redirect(url_for('upload_file'))  # Redirect to the same page to try again
+    return render_template('upload_form.html')  # Ensure you have a GET handler to display the form
 
-    try:
-        # Assume process_file processes the CSV and returns path of generated CSV
-        processed_csv_path = process_file(filepath)
-        csv_filename = os.path.basename(processed_csv_path)
-        return redirect(url_for('home', csv_path=csv_filename))
-    except Exception as e:
-        flash(f'Error processing file: {e}')
-        return redirect(request.url)
     
 @app.route('/download/<filename>', methods=['GET'])
 def download_file(filename):
