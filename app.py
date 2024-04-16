@@ -38,52 +38,46 @@ def home():
     #print("csv_path:", csv_path)  # This will print the value of csv_path to your console
     return render_template('index.html', csv_path=csv_path)
 
-def write_to_csv(data):
-    with open('output.csv', 'w', newline='') as csvfile:
+def write_to_csv(data, filename):
+    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    with open(filepath, 'w', newline='') as csvfile:
         fieldnames = ['Name', 'Heavy_Chain', 'Light_Chain']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerow(data)
+    return filepath
 
 
+@app.route('/upload', methods=['POST'])
 
-@app.route('/upload', methods=['GET','POST'])
 def upload_file():
+    if 'file' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    file = request.files['file']
+    if file.filename == '':
+        flash('No selected file')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = url_quote(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    mab_data = {
+        'Name': request.form['mab_name'],
+        'Heavy_Chain': request.form['heavy_chain'],
+        'Light_Chain': request.form['light_chain']
+    }
+    filepath = write_to_csv(mab_data, 'input_data.csv')
+
+    try:
+        # Assume process_file processes the CSV and returns path of generated CSV
+        processed_csv_path = process_file(filepath)
+        csv_filename = os.path.basename(processed_csv_path)
+        return redirect(url_for('home', csv_path=csv_filename))
+    except Exception as e:
+        flash(f'Error processing file: {e}')
+        return redirect(request.url)
     
-    if request.method == 'POST':
-        if 'file' not in request.files:
-            #flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        if file.filename == '':
-            #flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = url_quote(file.filename)
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(filepath)
-
-            heavy_chain = request.form['heavy_chain']
-            light_chain = request.form['light_chain']
-            mab_name = request.form['mab_name']
-
-            filepath = {'Name': mab_name, 'Heavy_Chain': heavy_chain, 'Light_Chain': light_chain}
-            write_to_csv(filepath)
-
-            process_file(filepath)
-        # Process the file to generate CSV
-            try:
-                # Process the file
-                full_csv_path = process_file(filepath)  # Assume process_file now returns path of generated CSV
-                # Pass the CSV path or its data to the template
-                csv_filename = os.path.basename(full_csv_path)
-                return redirect(url_for('home', csv_path=csv_filename))
-            except Exception as e:
-                #flash(f'Error processing file: {e}')
-                return redirect(request.url)
-                   
-    return render_template('index.html')
-
 @app.route('/download/<filename>', methods=['GET'])
 def download_file(filename):
     directory = "uploads"
