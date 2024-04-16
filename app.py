@@ -48,7 +48,7 @@ def write_to_csv(data, filename):
     return filepath
 
 
-@app.route('/upload', methods=['POST'])
+@app.route('/upload', methods=['GET','POST'])
 
 def upload_file():
     if 'file' not in request.files:
