@@ -74,7 +74,7 @@ def upload_file():
         except Exception as e:
             flash(f'Error processing file: {e}')
             return redirect(url_for('upload_file'))  # Redirect to the same page to try again
-    return render_template('upload_form.html')  # Ensure you have a GET handler to display the form
+    return render_template('index.html')  # Ensure you have a GET handler to display the form
 
     
 @app.route('/download/<filename>', methods=['GET'])
