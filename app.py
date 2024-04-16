@@ -73,7 +73,7 @@ def upload_file():
             return redirect(url_for('home', csv_path=csv_filename))
         except Exception as e:
             flash(f'Error processing file: {e}')
-            return redirect(url_for('upload_file'))  # Redirect to the same page to try again
+            return redirect(request.url)  # Redirect to the same page to try again
     return render_template('index.html')  # Ensure you have a GET handler to display the form
 
     
