@@ -17,7 +17,14 @@ header {
     background-color: #fff8dc;
     border-bottom: 3px solid black;
 }
-
+#intro {
+    font-family: 'Optima', sans-serif;
+    font-weight: bold;
+    margin: 20px;
+    padding: 0px;
+    border-radius: 10px;   
+    font-size: 1.2em
+}
 #deepSP .text-container {
     font-family: 'Impact', 'fantasy', sans-serif;
     background-color: #add8e6; /* Light blue color, adjust as needed */
@@ -64,6 +71,23 @@ header {
 
 #sequence-submission input[type="file"] {
     margin: 10px 0;
+}
+
+.try-button {
+    margin: 5px 0; /* Existing margin */
+    padding: 12px 24px; /* Increases padding to make the button larger */
+    font-size: 15px; /* Larger font size for the button text */
+    border-radius: 8px; /* Optional: Adds rounded corners */
+    cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+    background-color: #537b92; /* Optional: Adds a background color */
+    color: rgb(0, 0, 0); /* Changes the button text color to white for better contrast */
+    border: none; /* Removes the default border */
+    transition: background-color 0.3s ease; /* Smooth transition for the background color on hover */
+    font-family: 'Optima', sans-serif;
+    font-weight: bold;
+}
+.try-button:hover{
+    background-color: #244a72; /* Darker shade on hover for visual feedback */
 }
 
 #sequence-submission textarea {
