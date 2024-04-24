@@ -22,25 +22,53 @@
             <div id="about">
                 <h2>> About DeepSP</h2>
             </div> 
-                        
+            <div id="intro">
+                <h3>DeepSP: An antibody specific deep learning surrogate model for predicting antibody stability.</h3>
+                <p>DeepSP is a computational tool that utilizes deep learning to predict 30 structural properties of monoclonal antibodies, including spatial aggregation propensity (SAP), spatial negative charge map (SCM_neg) and spatial positive charge map (SCM_pos) scores, directly from variable region sequence information. This innovative approach eliminates the need for time-consuming and computationally demanding molecular dynamics (MD) simulations and captures surface hydrophobicity, negative charge and positive charge distribution in 10 domains (CDRH1, CDRH2, CDRH3, CDRL1, CDRL2, CDRL3, CDR, Hv, Lv, Fv) of antibodies.</p>
+                <style>
+                    #intro p {
+                        text-align: justify;
+                    }
+                </style>
+                <h3>How to Use DeepSP:</h3>
+                <ol>
+                    <li>Enter the name of your antibody in the first text box.</li>
+                    <li>Enter the heavy chain variable region sequence in the third text box. </li>
+                    <li>Enter the light chain variable region sequence in the third text box. </li>
+                    <li>Click the "Submit" button to generate thirty (30) DeepSP descriptors. </li>
+                </ol>
+                <h3>Note: To process large datasets at once, please refer to our <a href="https://github.com/Lailabcode/DeepSP" target="_blank">GitHub</a>.</h3>
+                <h3>Citation: <a href="https://www.biorxiv.org/content/10.1101/2024.02.28.582582v1" target="_blank">DeepSP's manuscript</a> is currently under peer review and is temporarily available on bioRxiv for reference. </h3>
+            </div> 
             <div id="sequence-submission">
-                <h2>> Sequence Submission</h2>
+                <h1>> Sequence Submission</h1>
                     <form method="post" action='/upload' enctype="multipart/form-data">
                     
-                    <label for="Name">Name your mAb</label><br>
-                    <textarea id="Name" name="mab_name"></textarea><br>
-
+                    <label for="Name">Name your mAb name</label><br>        
+                    <textarea id="Name" name="mab_name" placeholder="abituzumab"></textarea><br>
                     <label for="heavy-chain">Heavy chain's variable region sequence</label><br>
-                    <textarea id="heavy-chain" name="heavy_chain"></textarea><br>
-
+                    <textarea id="heavy-chain" name="heavy_chain" placeholder="QVQLQQSGGELAKPGASVKVSCKASGYTFSSFWMHWVRQAPGQGLEWIGYINPRSGYTEYNEIFRDKATMTTDTSTSTAYMELSSLRSEDTAVYYCASFLGRGAMDYWGQGTTVTVSS"></textarea><br>
                     <label for="light-chain">Light chain's variable region sequence</label><br>
-                    <textarea id="light-chain" name="light_chain"></textarea><br>
+                    <textarea id="light-chain" name="light_chain" placeholder="DIQMTQSPSSLSASVGDRVTITCRASQDISNYLAWYQQKPGKAPKLLIYYTSKIHSGVPSRFSGSGSGTDYTFTISSLQPEDIATYYCQQGNTFPYTFGQGTKVEIK"></textarea><br>
+                    <button onclick="copyExample()" class="try-button">CLICK ME TO TRY</button><br>
+
+                    <script>
+                    function copyExample() {
+                        var nameExample = "abituzumab";
+                        var heavyChainExample = "QVQLQQSGGELAKPGASVKVSCKASGYTFSSFWMHWVRQAPGQGLEWIGYINPRSGYTEYNEIFRDKATMTTDTSTSTAYMELSSLRSEDTAVYYCASFLGRGAMDYWGQGTTVTVSS";
+                        var lightChainExample = "DIQMTQSPSSLSASVGDRVTITCRASQDISNYLAWYQQKPGKAPKLLIYYTSKIHSGVPSRFSGSGSGTDYTFTISSLQPEDIATYYCQQGNTFPYTFGQGTKVEIK";
+                        
+                        document.getElementById("Name").value = nameExample;
+                        document.getElementById("heavy-chain").value = heavyChainExample;
+                        document.getElementById("light-chain").value = lightChainExample;
+                    }
+                    </script>
 
                     <button type="submit" class="submit-button">Submit</button>
                     
                     </form>
-                    
             </div>
+            
             <div id="result">
                 <h2>> Result</h2>
                 
