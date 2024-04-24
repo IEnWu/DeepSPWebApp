@@ -42,7 +42,7 @@
             </div> 
             <div id="sequence-submission">
                 <h1>> Sequence Submission</h1>
-                <form method="post" action='/upload' enctype="multipart/form-data">
+                
                 
                 <label for="Name">Name your mAb name</label><br>        
                 <textarea id="Name" name="mab_name" placeholder="abituzumab"></textarea><br>
@@ -63,7 +63,7 @@
                     document.getElementById("light-chain").value = lightChainExample;
                 }
                 </script>
-
+                <form method="post" action='/upload' enctype="multipart/form-data"></form>
                 <button type="submit" class="submit-button">Submit</button>
             </form>
 

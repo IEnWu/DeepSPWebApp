@@ -76,7 +76,7 @@ header {
 .try-button {
     margin: 5px 0; /* Existing margin */
     padding: 12px 24px; /* Increases padding to make the button larger */
-    font-size: 15px; /* Larger font size for the button text */
+    font-size: 18px; /* Larger font size for the button text */
     border-radius: 8px; /* Optional: Adds rounded corners */
     cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
     background-color: #537b92; /* Optional: Adds a background color */
