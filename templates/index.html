@@ -74,6 +74,8 @@
                 
                 {% if csv_path %}
                     <p>Download the result file here: <a href="{{ url_for('download_file', filename='DeepSP_descriptors.csv')}}">{{ csv_path }}</a></p>
+                    <p>Or view the result here:</p>
+                    <iframe src="{{ url_for('download_file', filename='DeepSP_descriptors.csv')}}" width="100%" height="400" frameborder="0"></iframe>
                 {% else %}
                     <p>No results available.</p>
                 {% endif %}
