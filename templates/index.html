@@ -42,33 +42,33 @@
             </div> 
             <div id="sequence-submission">
                 <h1>> Sequence Submission</h1>
-                    <form method="post" action='/upload' enctype="multipart/form-data">
-                    
-                    <label for="Name">Name your mAb name</label><br>        
-                    <textarea id="Name" name="mab_name" placeholder="abituzumab"></textarea><br>
-                    <label for="heavy-chain">Heavy chain's variable region sequence</label><br>
-                    <textarea id="heavy-chain" name="heavy_chain" placeholder="QVQLQQSGGELAKPGASVKVSCKASGYTFSSFWMHWVRQAPGQGLEWIGYINPRSGYTEYNEIFRDKATMTTDTSTSTAYMELSSLRSEDTAVYYCASFLGRGAMDYWGQGTTVTVSS"></textarea><br>
-                    <label for="light-chain">Light chain's variable region sequence</label><br>
-                    <textarea id="light-chain" name="light_chain" placeholder="DIQMTQSPSSLSASVGDRVTITCRASQDISNYLAWYQQKPGKAPKLLIYYTSKIHSGVPSRFSGSGSGTDYTFTISSLQPEDIATYYCQQGNTFPYTFGQGTKVEIK"></textarea><br>
-                    <button onclick="copyExample()" class="try-button">CLICK ME TO TRY</button><br>
+                <form method="post" action='/upload' enctype="multipart/form-data">
+                
+                <label for="Name">Name your mAb name</label><br>        
+                <textarea id="Name" name="mab_name" placeholder="abituzumab"></textarea><br>
+                <label for="heavy-chain">Heavy chain's variable region sequence</label><br>
+                <textarea id="heavy-chain" name="heavy_chain" placeholder="QVQLQQSGGELAKPGASVKVSCKASGYTFSSFWMHWVRQAPGQGLEWIGYINPRSGYTEYNEIFRDKATMTTDTSTSTAYMELSSLRSEDTAVYYCASFLGRGAMDYWGQGTTVTVSS"></textarea><br>
+                <label for="light-chain">Light chain's variable region sequence</label><br>
+                <textarea id="light-chain" name="light_chain" placeholder="DIQMTQSPSSLSASVGDRVTITCRASQDISNYLAWYQQKPGKAPKLLIYYTSKIHSGVPSRFSGSGSGTDYTFTISSLQPEDIATYYCQQGNTFPYTFGQGTKVEIK"></textarea><br>
+                <button onclick="copyExample()" class="try-button">CLICK ME TO TRY</button><br>
 
-                    <script>
-                    function copyExample() {
-                        var nameExample = "abituzumab";
-                        var heavyChainExample = "QVQLQQSGGELAKPGASVKVSCKASGYTFSSFWMHWVRQAPGQGLEWIGYINPRSGYTEYNEIFRDKATMTTDTSTSTAYMELSSLRSEDTAVYYCASFLGRGAMDYWGQGTTVTVSS";
-                        var lightChainExample = "DIQMTQSPSSLSASVGDRVTITCRASQDISNYLAWYQQKPGKAPKLLIYYTSKIHSGVPSRFSGSGSGTDYTFTISSLQPEDIATYYCQQGNTFPYTFGQGTKVEIK";
-                        
-                        document.getElementById("Name").value = nameExample;
-                        document.getElementById("heavy-chain").value = heavyChainExample;
-                        document.getElementById("light-chain").value = lightChainExample;
-                    }
-                    </script>
-
-                    <button type="submit" class="submit-button">Submit</button>
+                <script>
+                function copyExample() {
+                    var nameExample = "abituzumab";
+                    var heavyChainExample = "QVQLQQSGGELAKPGASVKVSCKASGYTFSSFWMHWVRQAPGQGLEWIGYINPRSGYTEYNEIFRDKATMTTDTSTSTAYMELSSLRSEDTAVYYCASFLGRGAMDYWGQGTTVTVSS";
+                    var lightChainExample = "DIQMTQSPSSLSASVGDRVTITCRASQDISNYLAWYQQKPGKAPKLLIYYTSKIHSGVPSRFSGSGSGTDYTFTISSLQPEDIATYYCQQGNTFPYTFGQGTKVEIK";
                     
-                    </form>
+                    document.getElementById("Name").value = nameExample;
+                    document.getElementById("heavy-chain").value = heavyChainExample;
+                    document.getElementById("light-chain").value = lightChainExample;
+                }
+                </script>
+
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+
             </div>
-            
+
             <div id="result">
                 <h2>> Result</h2>
                 
