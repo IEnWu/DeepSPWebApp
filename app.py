@@ -76,7 +76,7 @@ def upload_file():
         #    return redirect(request.url)  # Redirect to the same page to try again
         try:
             processed_csv_path = process_file(filepath)
-            csv_data = []  # 初始化一个空列表用于存储 CSV 文件的内容
+            csv_data = []  
             with open(processed_csv_path, 'r', newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
