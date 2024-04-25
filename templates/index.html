@@ -74,16 +74,18 @@
                 
                 {% if csv_path %}
                     <p>Download the result file here: <a href="{{ url_for('download_file', filename='DeepSP_descriptors.csv')}}">{{ csv_path }}</a></p>
-                    <p>CSV file content:</p>
-                    <table>
-                        {% for row in csv_data %}
-                            <tr>
-                                {% for item in row %}
-                                    <td>{{ item }}</td>
-                                {% endfor %}
-                            </tr>
-                        {% endfor %}
-                    </table>
+                    <p>Result:</p>
+                    <div style="overflow-x: auto; max-height: 400px;"></div>
+                        <table>
+                            {% for row in csv_data %}
+                                <tr>
+                                    {% for item in row %}
+                                        <td>{{ item }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
                 {% else %}
                     <p>No results available.</p>
                 {% endif %}
