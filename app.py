@@ -67,13 +67,24 @@ def upload_file():
             'Light_Chain': request.form.get('light_chain', '')
         }
         filepath = write_to_csv(mab_data, 'input_data.csv')
+        #try:
+        #    processed_csv_path = process_file(filepath)  # This function should handle file processing
+        #    csv_filename = os.path.basename(processed_csv_path)
+        #    return redirect(url_for('home', csv_path=csv_filename))
+        #except Exception as e:
+        #    flash(f'Error processing file: {e}')
+        #    return redirect(request.url)  # Redirect to the same page to try again
         try:
-            processed_csv_path = process_file(filepath)  # This function should handle file processing
-            csv_filename = os.path.basename(processed_csv_path)
-            return redirect(url_for('home', csv_path=csv_filename))
+            processed_csv_path = process_file(filepath)
+            csv_data = []  # 初始化一个空列表用于存储 CSV 文件的内容
+            with open(processed_csv_path, 'r', newline='') as csvfile:
+                reader = csv.reader(csvfile)
+                for row in reader:
+                    csv_data.append(row)
+            return render_template('index.html', csv_path=os.path.basename(processed_csv_path), csv_data=csv_data)
         except Exception as e:
             flash(f'Error processing file: {e}')
-            return redirect(request.url)  # Redirect to the same page to try again
+            return redirect(request.url)
     return render_template('index.html')  # Ensure you have a GET handler to display the form
 
     
@@ -92,7 +103,7 @@ def view_csv():
         reader = csv.reader(csvfile)
         for row in reader:
             csv_data.append(row)
-    return render_template('index.html', csv_data=csv_data)
+    return render_template('view_csv.html', csv_data=csv_data)
 
 
 if __name__ == '__main__':
