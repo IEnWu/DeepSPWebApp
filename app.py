@@ -85,5 +85,15 @@ def download_file(filename):
     except FileNotFoundError:
         abort(404)
 
+@app.route('/view_csv')
+def view_csv():
+    csv_data = []
+    with open('uploads/DeepSP_descriptors.csv', 'r', newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            csv_data.append(row)
+    return render_template('index.html', csv_data=csv_data)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
